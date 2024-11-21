@@ -26,7 +26,7 @@ public class Algebra {
 	// Returns x1 + x2
 	public static int plus(int x1, int x2) {
 		// Replace the following statement with your code
-		return 0;
+		return 1;
 	}
 
 	// Returns x1 - x2
