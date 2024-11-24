@@ -28,22 +28,50 @@ public class Anagram {
 
 	// Returns true if the two given strings are anagrams, false otherwise.
 	public static boolean isAnagram(String str1, String str2) {
-		// Replace the following statement with your code
-		return false;
+		String preProStr1 = removeSpaces(preProcess(str1));
+		String preProStr2 = removeSpaces(preProcess(str2));
+		boolean isAnagram = true;
+		for (int i = 0; i < preProStr2.length() && isAnagram; i++) {
+			char ch = preProStr2.charAt(i);
+			if (preProStr1.indexOf(ch) == -1) isAnagram = false;
+		}
+
+		return isAnagram;
 	}
 	   
 	// Returns a preprocessed version of the given string: all the letter characters are converted
 	// to lower-case, and all the other characters are deleted, except for spaces, which are left
-	// as is. For example, the string "What? No way!" becomes "whatnoway"
+	// as is. For example, the string "What? No way!" becomes "what no way"
 	public static String preProcess(String str) {
-		// Replace the following statement with your code
-		return "";
+		String finishStr = "";
+		for (int i = 0; i < str.length(); i++) {
+			if (str.charAt(i) >= 'A' && str.charAt(i) <= 'Z') finishStr += (char) (str.charAt(i) + 32);
+			else if (str.charAt(i) >= 'a' && str.charAt(i) <= 'z') finishStr += (str.charAt(i));
+			else if (str.charAt(i) == ' ') finishStr += str.charAt(i);
+		}
+		return finishStr;
 	} 
 	   
+	public static String removeSpaces(String str) {
+		String finishStr = "";
+		for (int i = 0; i < str.length(); i++) {
+			if (str.charAt(i) != ' ') finishStr += str.charAt(i);
+		}
+		return finishStr;
+	} 
+	
 	// Returns a random anagram of the given string. The random anagram consists of the same
 	// characters as the given string, re-arranged in a random order. 
 	public static String randomAnagram(String str) {
 		// Replace the following statement with your code
-		return "";
+		String randomAnagram = "";
+		String preProcressStr = removeSpaces(preProcess(str));
+
+		while (preProcressStr.length() > 0) {
+			int randomNum = (int) (preProcressStr.length() * Math.random());
+			randomAnagram += preProcressStr.charAt(randomNum);
+			preProcressStr = preProcressStr.substring(0, randomNum) + preProcressStr.substring(randomNum + 1);
+		}
+		return randomAnagram;
 	}
 }
