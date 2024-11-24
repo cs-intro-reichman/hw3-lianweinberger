@@ -66,22 +66,12 @@ public class Anagram {
 		// Replace the following statement with your code
 		String randomAnagram = "";
 		String preProcressStr = removeSpaces(preProcess(str));
-		int randomNumRange = preProcressStr.length();
-		while (randomNumRange > 0) {
-			int randomNum = (int) (randomNumRange * Math.random());
+
+		while (preProcressStr.length() > 0) {
+			int randomNum = (int) (preProcressStr.length() * Math.random());
 			randomAnagram += preProcressStr.charAt(randomNum);
-			preProcressStr = RemoveChar(preProcressStr, preProcressStr.charAt(randomNum));
-			randomNumRange--;
+			preProcressStr = preProcressStr.substring(0, randomNum) + preProcressStr.substring(randomNum + 1);
 		}
 		return randomAnagram;
 	}
-
-	public static String RemoveChar(String str, char c) {
-		String newStr = "";
-		for (int i = 0; i < str.length(); i++) {
-			if (str.charAt(i) != c) newStr += str.charAt(i);
-		}
-		return newStr;
-	}
-
 }
